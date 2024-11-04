@@ -1,0 +1,11 @@
+kit_motors:
+  ros__parameters:
+    right_wheel:
+      GPIOs:
+        direction_pin: 6
+        pwm_pin: 13
+    left_wheel:
+      GPIOs:
+        direction_pin: 5
+        pwm_pin: 12
+    duty_cycle_frequency: 1000

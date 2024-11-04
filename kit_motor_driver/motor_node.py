@@ -7,18 +7,23 @@ class MotorNode(Node):
     def __init__(self):
         super().__init__('motor_node')
         
+        # Declare parameters
+        self.declare_parameter('kit_motors.right_wheel.GPIOs.direction_pin', 6)
+        self.declare_parameter('kit_motors.right_wheel.GPIOs.pwm_pin', 13)
+        self.declare_parameter('kit_motors.left_wheel.GPIOs.direction_pin', 5)
+        self.declare_parameter('kit_motors.left_wheel.GPIOs.pwm_pin', 12)
+        self.declare_parameter('kit_motors.duty_cycle_frequency', 1000)
+
+        # Retrieve parameters
+        self.RIGHT_DIR_PIN = self.get_parameter('kit_motors.right_wheel.GPIOs.direction_pin').value
+        self.RIGHT_PWM_PIN = self.get_parameter('kit_motors.right_wheel.GPIOs.pwm_pin').value
+        self.LEFT_DIR_PIN = self.get_parameter('kit_motors.left_wheel.GPIOs.direction_pin').value
+        self.LEFT_PWM_PIN = self.get_parameter('kit_motors.left_wheel.GPIOs.pwm_pin').value
+        self.DUTY_CYCLE_FREQUENCY = self.get_parameter('kit_motors.duty_cycle_frequency').value
+        self.MAX_DUTY_CYCLE = 100
+
         self.create_subscription(Float32, '/kit/wheels/right/duty_cycle', self.right_wheel_callback, 10)
         self.create_subscription(Float32, '/kit/wheels/left/duty_cycle', self.left_wheel_callback, 10)
-
-        self.LEFT_DIR_PIN = 5
-        self.LEFT_PWM_PIN = 12
-
-        self.RIGHT_DIR_PIN = 6
-        self.RIGHT_PWM_PIN = 13
-
-        self.DUTY_CYCLE_FREQUENCY = 1000
-
-        self.MAX_DUTY_CYCLE = 100
 
         # GPIO setup
         GPIO.setmode(GPIO.BCM)
