@@ -25,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             'motor_node = kit_motor_driver.motor_node:main',
+            'controller_node = kit_motor_driver.controller_node:main',
         ],
     },
 )

@@ -1,0 +1,6 @@
+kit_motor_control:
+  ros__parameters:
+    robot_dimensions:
+      wheel_base: 0.15
+    controller:
+      proportional_gain: 20 # É nessario fazer o tunning desse valor para o Kit!

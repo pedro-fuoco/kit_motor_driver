@@ -77,12 +77,10 @@ class MotorNode(Node):
 
     def left_wheel_callback(self, msg):
         # Envia a informação para o usuário e para a roda desejada
-        self.get_logger().info(f"Received left wheel duty cycle: {msg.data}")
         self.set_wheel(msg.data, self.left_pwm, self.LEFT_DIR_PIN)
 
     def right_wheel_callback(self, msg):
         # Envia a informação para o usuário e para a roda desejada
-        self.get_logger().info(f"Received right wheel duty cycle: {msg.data}")
         self.set_wheel(msg.data, self.right_pwm, self.RIGHT_DIR_PIN)
     
     def __del__(self):
